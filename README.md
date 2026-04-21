@@ -1,19 +1,31 @@
 # Accredian Enterprise Landing Page
 
-This project is a responsive enterprise landing page built with Next.js App Router. It recreates an enterprise-facing training solutions page with multiple sections, a working enquiry modal, and a mock API endpoint for form submission.
+A responsive enterprise landing page built with **Next.js 14** and **React 18**, focused on presenting Accredian's enterprise training offering with a polished single-page experience, section-based navigation, and a working enquiry flow.
+
+## Overview
+
+This project recreates an enterprise-facing landing page with:
+
+- a sticky navigation bar with active section highlighting
+- a responsive hero section with refined image framing
+- stats, client logos, domain expertise, audience, CAT framework, process, FAQ, and testimonials sections
+- a reusable enquiry modal
+- a mock API route for enquiry form submission
+
+The implementation uses the **App Router** and keeps most UI content data-driven through a centralized content file.
 
 ## Tech Stack
 
-- Next.js 14
-- React 18
-- CSS via `app/globals.css`
-- App Router API route for enquiry handling
+- **Next.js 14**
+- **React 18**
+- **CSS** via `app/globals.css`
+- **Next.js API Route** for mock enquiry submission
 
 ## Setup Instructions
 
 ### Prerequisites
 
-- Node.js 18+ recommended
+- Node.js 18 or later
 - npm
 
 ### Install dependencies
@@ -22,19 +34,19 @@ This project is a responsive enterprise landing page built with Next.js App Rout
 npm install
 ```
 
-### Run the project locally
+### Start the development server
 
 ```bash
 npm run dev
 ```
 
-Open:
+Then open:
 
 ```text
 http://localhost:3000
 ```
 
-### Create a production build
+### Build for production
 
 ```bash
 npm run build
@@ -48,7 +60,8 @@ app/
   api/enquiry/route.js     Mock enquiry submission API
   globals.css              Global styling and responsive layout rules
   layout.js                Root layout
-  page.js                  Home page entry
+  page.js                  Landing page entry
+  icon.svg                 App icon
 
 components/
   enterprise-page.jsx      Main landing page UI
@@ -60,58 +73,85 @@ lib/
 
 ## Approach Taken
 
-The page was built as a single-page enterprise marketing experience with section-based navigation and reusable data-driven rendering.
+The page was built as a **single-page enterprise microsite** with section anchors and a strong focus on reusable rendering.
 
-Key implementation decisions:
+### Implementation approach
 
-- Kept all major content in `lib/enterprise-data.js` so sections are easier to maintain.
-- Built the full page in `components/enterprise-page.jsx` to keep the landing page logic centralized.
+- Kept page content centralized in `lib/enterprise-data.js` to make updates easier.
+- Built the main landing experience in `components/enterprise-page.jsx`.
 - Used reusable helpers like `Icon`, `SectionHeading`, and `NavLink` to reduce duplication.
-- Added a client-side active section tracker so the header navigation reflects the current scroll position.
-- Implemented the enquiry modal as a separate client component for cleaner separation of concerns.
-- Added a mock `/api/enquiry` endpoint so the form has a realistic submission flow.
-- Used responsive CSS in `app/globals.css` to preserve the layout across desktop and mobile.
+- Added section-aware navigation so the active nav item updates while scrolling.
+- Separated the enquiry modal into its own component for cleaner logic and easier maintenance.
+- Added a mock API route so the form submission behaves like a real enquiry flow.
+- Styled the page responsively in `app/globals.css` with desktop and mobile behavior handled in the same global system.
+
+### Design and UX decisions
+
+- Preserved a clean, enterprise-oriented visual style rather than over-designing the page.
+- Refined the hero image presentation to avoid awkward crop issues and text overlap.
+- Kept the CAT section in a simpler circular layout after comparing more complex alternatives and prioritizing clarity.
+- Focused on readability, spacing, and section hierarchy so the page feels structured and easy to scan.
 
 ## AI Usage Explanation
 
-AI was used as a development assistant during implementation and refinement.
+AI was used as a **development assistant**, not as an unreviewed source of final output.
 
-### Where AI helped
+## Where AI Helped
 
-- Scaffolding the initial page structure and section breakdown.
-- Suggesting component organization and reusable UI patterns.
-- Helping draft layout and styling iterations for sections like the hero, FAQ, and modal.
-- Assisting with debugging the local dev server issue when static assets were failing to load.
-- Speeding up content polishing and submission documentation.
+- Helped scaffold the page structure and break the UI into reusable sections.
+- Assisted with iteration on layout and styling ideas for the hero, FAQ, modal, and supporting sections.
+- Helped speed up debugging when the local dev server entered a broken asset-loading state.
+- Assisted in drafting and organizing submission documentation.
 
-### What was modified or improved manually
+## What I Modified or Improved Manually
 
-- Manually reviewed and refined the visual hierarchy and spacing across sections.
-- Adjusted the hero image treatment to avoid awkward cropping and text overlap on faces.
-- Reworked the hero metrics placement so labels no longer sit on top of the subject image.
-- Reviewed responsive behavior and kept the CAT section in the simpler circular style after comparing alternatives.
-- Verified the live app locally after fixes instead of relying only on generated code.
+- Reviewed and refined the visual layout after generation rather than accepting the first pass.
+- Adjusted the hero image framing to avoid face cropping and overlay issues.
+- Repositioned hero metric badges so text no longer appeared on top of the subject image.
+- Compared alternate CAT section designs and manually chose the clearer version.
+- Verified local rendering and corrected implementation details through manual testing.
+- Structured the final README to clearly separate AI assistance from manual work.
 
 ## Improvements I Would Make With More Time
 
-- Replace remote image URLs with optimized local assets or `next/image` for better performance.
-- Improve accessibility further with stronger keyboard focus states, better form validation feedback, and more thorough screen-reader testing.
-- Add automated tests for the enquiry modal, navigation behavior, and API route.
-- Split some large styling blocks into smaller section-specific files for easier long-term maintenance.
-- Add animation and micro-interactions more selectively to improve polish without hurting performance.
-- Connect the enquiry form to a real backend or CRM integration instead of the mock API response.
-- Add SEO enhancements such as richer metadata, Open Graph support, and structured content tuning.
+- Replace external image URLs with optimized local assets or `next/image`.
+- Add stronger form validation and better error-state UX.
+- Add accessibility improvements such as enhanced focus states and more detailed keyboard/screen-reader testing.
+- Add automated tests for navigation behavior, modal interaction, and API submission.
+- Split global CSS into more maintainable section-level styling or CSS modules.
+- Connect the enquiry form to a real backend, email service, or CRM.
+- Add richer metadata, social preview tags, and stronger production SEO polish.
 
 ## Submission Notes
 
-For submission clarity:
+### AI contribution
 
-- AI helped with structure, styling assistance, debugging support, and drafting.
-- Manual work focused on visual cleanup, responsive refinement, validation through local testing, and final UI decisions.
+AI helped with:
+
+- scaffolding
+- layout suggestions
+- styling iteration support
+- debugging support
+- documentation drafting
+
+### Manual contribution
+
+I manually handled:
+
+- UI cleanup and layout judgment
+- responsive refinement
+- hero image correction
+- final component and styling decisions
+- local verification and issue fixing
+- final README structure and submission framing
 
 ## Available Scripts
 
-- `npm run dev` - Start the development server
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
+- `npm run dev` - start the local development server
+- `npm run build` - create a production build
+- `npm run start` - run the production server
+
+## Final Note
+
+This submission is intended to show both implementation ability and practical judgment: using AI to move faster, while still reviewing, refining, and owning the final result manually.
 
